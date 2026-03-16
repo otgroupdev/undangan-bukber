@@ -49,10 +49,10 @@
             0%, 100% { opacity: 0.2; transform: scale(0.8); }
             50% { opacity: 1; transform: scale(1.2); }
         }
-        /* Container kartu dengan margin auto untuk centering maksimal */
+        /* Container kartu yang lebih lebar untuk laptop/tablet */
         .card-container {
             width: 100%;
-            max-width: 420px;
+            max-width: 650px; /* Ukuran maksimal diperlebar */
             padding: 20px;
             z-index: 10;
             display: flex;
@@ -70,14 +70,14 @@
             background: #d97706;
             border-radius: 10px;
         }
-        /* Memastikan konten di dalam flex container tetap center */
+        /* Wrapper tambahan agar centering di layar lebar tetap solid */
         .card-wrapper {
             width: 100%;
             margin: 0 auto;
         }
     </style>
 </head>
-<body class="p-2 sm:p-4">
+<body class="p-2 sm:p-6">
 
     <!-- Dekorasi Latar Belakang (Bintang) -->
     <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
@@ -92,95 +92,95 @@
     <div class="card-container">
         <div class="card-wrapper">
             <!-- Layar Depan (Cover) -->
-            <div id="cover" class="glass w-full min-h-[480px] rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex flex-col items-center justify-center text-center p-8 sm:p-10 border-[6px] border-yellow-600/30 transition-all duration-700 ease-in-out">
-                <div class="lantern-sway mb-6">
-                    <svg width="70" height="90" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <div id="cover" class="glass w-full min-h-[500px] rounded-[2.5rem] shadow-[0_20px_60px_rgba(0,0,0,0.7)] flex flex-col items-center justify-center text-center p-10 sm:p-16 border-[8px] border-yellow-600/20 transition-all duration-700 ease-in-out">
+                <div class="lantern-sway mb-8">
+                    <svg width="80" height="100" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 2v2M5 22h14M8 18h8M12 4c-3.3 0-6 2.7-6 6v4c0 3.3 2.7 6 6 6s6-2.7 6-6v-4c0-3.3-2.7-6-6-6zM9 10h6M9 14h6" />
                     </svg>
                 </div>
                 
-                <h2 class="arabic-font text-4xl sm:text-5xl text-emerald-900 mb-2">Ramadan Kareem</h2>
-                <p class="text-emerald-700 font-bold tracking-[0.2em] uppercase text-[10px] mb-8">Official Invitation</p>
+                <h2 class="arabic-font text-5xl sm:text-7xl text-emerald-900 mb-4">Ramadan Kareem</h2>
+                <p class="text-emerald-700 font-bold tracking-[0.3em] uppercase text-[12px] mb-10">Official Invitation</p>
                 
-                <h1 class="text-xl sm:text-2xl font-extrabold text-emerald-900 mb-4 leading-tight">
+                <h1 class="text-2xl sm:text-4xl font-extrabold text-emerald-900 mb-6 leading-tight">
                     Buka Puasa Bersama <br>
                     <span class="text-yellow-600">Admin UPA WF Pandaan</span>
                 </h1>
 
-                <button onclick="openInvitation()" class="mt-8 bg-emerald-800 hover:bg-emerald-700 text-white px-10 py-4 rounded-full font-bold shadow-xl transform transition hover:scale-105 active:scale-95 flex items-center gap-3">
+                <button onclick="openInvitation()" class="mt-8 bg-emerald-800 hover:bg-emerald-700 text-white px-12 py-5 rounded-full font-bold shadow-2xl transform transition hover:scale-105 active:scale-95 flex items-center gap-4 text-lg">
                     <span>Buka Undangan</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                 </button>
             </div>
 
             <!-- Detail Undangan -->
-            <div id="details" class="hidden glass w-full max-h-[90vh] rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex flex-col p-6 sm:p-8 border-[6px] border-emerald-800/20 animate-in fade-in zoom-in duration-500">
+            <div id="details" class="hidden glass w-full max-h-[95vh] rounded-[2.5rem] shadow-[0_20px_60px_rgba(0,0,0,0.7)] flex flex-col p-8 sm:p-14 border-[8px] border-emerald-800/10 animate-in fade-in zoom-in duration-500">
                 
-                <div class="custom-scroll overflow-y-auto pr-1">
-                    <div class="flex justify-between items-start mb-6 border-b border-emerald-100 pb-4">
+                <div class="custom-scroll overflow-y-auto pr-2">
+                    <div class="flex justify-between items-center mb-8 border-b border-emerald-100 pb-6">
                         <div class="text-left">
-                            <p class="text-[10px] text-emerald-900 font-bold uppercase tracking-wider">PT Ultra Prima Abadi</p>
-                            <p class="text-[9px] text-emerald-600 font-medium">Wafer Factory Pandaan</p>
+                            <p class="text-xs sm:text-sm text-emerald-900 font-bold uppercase tracking-widest">PT Ultra Prima Abadi</p>
+                            <p class="text-[10px] sm:text-xs text-emerald-600 font-medium">Wafer Factory Pandaan</p>
                         </div>
                         <div class="text-yellow-600">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.1L1 12h3v9h7v-6h2v6h7v-9h3L12 2.1z"/></svg>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.1L1 12h3v9h7v-6h2v6h7v-9h3L12 2.1z"/></svg>
                         </div>
                     </div>
 
                     <div class="text-center">
-                        <p class="text-xs sm:text-sm text-emerald-800 italic mb-6 leading-relaxed">"Menjalin silaturahmi, mempererat kekeluargaan di bulan yang suci."</p>
+                        <p class="text-sm sm:text-lg text-emerald-800 italic mb-10 leading-relaxed px-4">"Menjalin silaturahmi, mempererat kekeluargaan di bulan yang suci."</p>
                         
-                        <div class="space-y-4 mb-8 text-left">
-                            <div class="flex items-center gap-4 bg-emerald-50 p-4 rounded-2xl border-l-4 border-yellow-500 shadow-sm">
-                                <div class="bg-yellow-500 p-2.5 rounded-xl text-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/></svg>
+                        <div class="grid grid-cols-1 gap-5 mb-10 text-left">
+                            <div class="flex items-center gap-6 bg-emerald-50/50 p-6 rounded-3xl border-l-8 border-yellow-500 shadow-sm">
+                                <div class="bg-yellow-500 p-3.5 rounded-2xl text-white shadow-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/></svg>
                                 </div>
                                 <div>
-                                    <p class="text-[10px] text-emerald-600 uppercase font-bold tracking-tighter">Hari & Tanggal</p>
-                                    <p id="display-date" class="font-bold text-emerald-900 text-sm">Selasa, 17 Maret 2026</p>
+                                    <p class="text-xs text-emerald-600 uppercase font-bold tracking-widest mb-1">Hari & Tanggal</p>
+                                    <p id="display-date" class="font-extrabold text-emerald-900 text-lg sm:text-xl">Selasa, 17 Maret 2026</p>
                                 </div>
                             </div>
 
-                            <div class="flex items-center gap-4 bg-emerald-50 p-4 rounded-2xl border-l-4 border-emerald-700 shadow-sm">
-                                <div class="bg-emerald-800 p-2.5 rounded-xl text-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            <div class="flex items-center gap-6 bg-emerald-50/50 p-6 rounded-3xl border-l-8 border-emerald-700 shadow-sm">
+                                <div class="bg-emerald-800 p-3.5 rounded-2xl text-white shadow-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                                 </div>
                                 <div>
-                                    <p class="text-[10px] text-emerald-600 uppercase font-bold tracking-tighter">Waktu</p>
-                                    <p class="font-bold text-emerald-900 text-sm">17:00 WIB - Selesai</p>
+                                    <p class="text-xs text-emerald-600 uppercase font-bold tracking-widest mb-1">Waktu</p>
+                                    <p class="font-extrabold text-emerald-900 text-lg sm:text-xl">17:00 WIB - Selesai</p>
                                 </div>
                             </div>
 
-                            <div class="flex items-center gap-4 bg-emerald-50 p-4 rounded-2xl border-l-4 border-emerald-700 shadow-sm">
-                                <div class="bg-emerald-800 p-2.5 rounded-xl text-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <div class="flex items-center gap-6 bg-emerald-50/50 p-6 rounded-3xl border-l-8 border-emerald-700 shadow-sm">
+                                <div class="bg-emerald-800 p-3.5 rounded-2xl text-white shadow-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
                                 </div>
                                 <div>
-                                    <p class="text-[10px] text-emerald-600 uppercase font-bold tracking-tighter">Lokasi</p>
-                                    <p class="font-bold text-emerald-900 text-sm">Ruang Meeting UPA Pandaan</p>
+                                    <p class="text-xs text-emerald-600 uppercase font-bold tracking-widest mb-1">Lokasi</p>
+                                    <p class="font-extrabold text-emerald-900 text-lg sm:text-xl">Ruang Meeting UPA Pandaan</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="rsvp-section" class="pb-2">
-                            <p class="text-xs text-emerald-900 mb-4 font-bold">Konfirmasi Kehadiran:</p>
-                            <div class="grid grid-cols-2 gap-3">
-                                <button onclick="confirmRSVP('Hadir')" class="bg-emerald-800 text-white px-2 py-3.5 rounded-xl text-xs font-bold hover:bg-emerald-900 transition shadow-lg active:scale-95">
+                        <div id="rsvp-section" class="pb-4">
+                            <p class="text-sm text-emerald-900 mb-6 font-bold uppercase tracking-widest">Konfirmasi Kehadiran:</p>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <button onclick="confirmRSVP('Hadir')" class="flex-1 bg-emerald-800 text-white px-6 py-4 rounded-2xl font-bold hover:bg-emerald-900 transition shadow-xl active:scale-95 text-lg">
                                     Insya Allah Hadir
                                 </button>
-                                <button onclick="confirmRSVP('Tidak')" class="border-2 border-emerald-800 text-emerald-800 px-2 py-3.5 rounded-xl text-xs font-bold hover:bg-emerald-50 transition active:scale-95">
+                                <button onclick="confirmRSVP('Tidak')" class="flex-1 border-2 border-emerald-800 text-emerald-800 px-6 py-4 rounded-2xl font-bold hover:bg-emerald-50 transition active:scale-95 text-lg">
                                     Berhalangan
                                 </button>
                             </div>
                         </div>
 
-                        <div id="success-msg" class="hidden py-4 text-emerald-800 font-extrabold text-sm animate-bounce">
+                        <div id="success-msg" class="hidden py-6 text-emerald-800 font-extrabold text-lg animate-bounce">
                             Konfirmasi Terkirim! ✨
                         </div>
 
-                        <div class="mt-8 pt-4 border-t border-emerald-100">
-                            <p class="text-[9px] text-emerald-400 font-bold tracking-[0.3em] uppercase mb-1">Go Beyond</p>
-                            <p class="text-[8px] text-emerald-300 uppercase">Ultra Prima Abadi © 2026</p>
+                        <div class="mt-12 pt-6 border-t border-emerald-100">
+                            <p class="text-xs text-emerald-400 font-bold tracking-[0.4em] uppercase mb-2">Go Beyond</p>
+                            <p class="text-[10px] text-emerald-300 uppercase">Ultra Prima Abadi © 2026</p>
                         </div>
                     </div>
                 </div>
@@ -189,8 +189,8 @@
     </div>
 
     <!-- Floating Notification -->
-    <div id="toast" class="fixed top-10 left-1/2 -translate-x-1/2 glass px-6 py-3 rounded-full text-emerald-900 text-sm font-bold shadow-2xl -translate-y-32 transition-all duration-500 pointer-events-none opacity-0 border border-yellow-500 z-50">
-        Menuju WhatsApp... 📱
+    <div id="toast" class="fixed top-12 left-1/2 -translate-x-1/2 glass px-8 py-4 rounded-full text-emerald-900 text-sm sm:text-base font-bold shadow-2xl -translate-y-40 transition-all duration-500 pointer-events-none opacity-0 border border-yellow-500 z-50">
+        Membuka WhatsApp... 📱
     </div>
 
     <script>
@@ -198,7 +198,7 @@
             const cover = document.getElementById('cover');
             const details = document.getElementById('details');
             
-            cover.classList.add('scale-90', 'opacity-0');
+            cover.classList.add('scale-95', 'opacity-0');
             setTimeout(() => {
                 cover.classList.add('hidden');
                 details.classList.remove('hidden');
@@ -216,11 +216,11 @@
                 const message = encodeURIComponent("Halo, saya konfirmasi hadir untuk Bukber Admin UPA Pandaan! ✨");
                 const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
                 
-                toast.classList.remove('-translate-y-32', 'opacity-0');
+                toast.classList.remove('-translate-y-40', 'opacity-0');
                 
                 setTimeout(() => {
                     window.open(whatsappUrl, '_blank');
-                    toast.classList.add('-translate-y-32', 'opacity-0');
+                    toast.classList.add('-translate-y-40', 'opacity-0');
                 }, 1200);
             }
 
