@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Meta tags untuk mencegah caching agar tanggal selalu terbaru -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
     <title>Undangan Bukber Admin Up - UPA WF Pandaan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -96,7 +101,10 @@
                     <div class="space-y-3 mb-8">
                         <div class="flex items-center gap-4 bg-emerald-50/50 p-4 rounded-2xl border-l-4 border-yellow-500 shadow-sm text-left">
                             <div class="bg-yellow-500 p-2 rounded-xl text-white"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/></svg></div>
-                            <div><p class="text-[9px] text-emerald-600 uppercase font-bold tracking-widest">Hari & Tanggal</p><p id="display-date" class="font-bold text-emerald-900 text-[13px]">Selasa, 17 Maret 2026</p></div>
+                            <div><p class="text-[9px] text-emerald-600 uppercase font-bold tracking-widest">Hari & Tanggal</p>
+                                <!-- Hardcoded agar tidak kena cache JS -->
+                                <p id="display-date" class="font-bold text-emerald-900 text-[13px]">Selasa, 17 Maret 2026</p>
+                            </div>
                         </div>
                         <div class="flex items-center gap-4 bg-emerald-50/50 p-4 rounded-2xl border-l-4 border-emerald-800 shadow-sm text-left">
                             <div class="bg-emerald-800 p-2 rounded-xl text-white"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
@@ -212,7 +220,7 @@
         signInAnonymously(auth).then(u => user = u.user).catch(console.error);
         onAuthStateChanged(auth, u => user = u);
 
-        // Admin Trigger (15 Klik pada Home)
+        // Admin Trigger
         window.triggerAdmin = function() {
             homeClicks++;
             if (homeClicks >= 15) {
@@ -264,7 +272,7 @@
         }
         listenToAttendance();
 
-        // Render List Kehadiran
+        // Render List
         function renderAttendance(data) {
             const content = document.getElementById('attendance-content');
             if (!data || data.length === 0) {
@@ -275,7 +283,6 @@
             const attending = data.filter(d => d.status === 'Hadir');
             const absent = data.filter(d => d.status === 'Tidak');
 
-            // Public Grouping (Hanya yang HADIR)
             const groups = attending.reduce((acc, curr) => {
                 const div = curr.division || 'Lainnya';
                 if (!acc[div]) acc[div] = [];
@@ -293,7 +300,6 @@
                 </div>
             `;
 
-            // List Hadir (Terbuka untuk Umum)
             Object.keys(groups).sort().forEach(div => {
                 html += `<div class="space-y-2">
                     <div class="flex items-center gap-2"><span class="h-[1px] flex-1 bg-emerald-100"></span><span class="text-[8px] font-black uppercase text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full">${div}</span><span class="h-[1px] flex-1 bg-emerald-100"></span></div>
@@ -311,7 +317,6 @@
                 html += `</div></div>`;
             });
 
-            // List Berhalangan (HANYA TERLIHAT ADMIN)
             if (window.isAdmin && absent.length > 0) {
                 html += `<div class="mt-8 pt-4 border-t-4 border-red-100/50">
                     <h5 class="text-[9px] font-black uppercase text-red-500 mb-4 text-center tracking-[0.3em]">REKAP BERHALANGAN (ADMIN ONLY)</h5>
@@ -331,7 +336,6 @@
             content.innerHTML = html;
         }
 
-        // Admin Actions
         window.deleteEntry = async function(id) {
             if (!confirm("Hapus data ini?")) return;
             try { await deleteDoc(doc(db, 'artifacts', 'ot-upa-undangan-bukber', 'public', 'data', 'rsvps', id)); showToast("Dihapus! 🗑️"); } catch(e) { showToast("Gagal."); }
@@ -372,7 +376,7 @@
     </script>
 
     <script>
-        // Navigasi & UI
+        // Navigasi
         function openInvitation() {
             document.getElementById('cover').classList.add('scale-95', 'opacity-0');
             setTimeout(() => { document.getElementById('cover').classList.add('hidden'); document.getElementById('details').classList.remove('hidden', 'scale-95', 'opacity-0'); }, 400);
@@ -396,7 +400,7 @@
             if (s.value === 'Lainnya') { c.classList.remove('hidden'); c.focus(); } else { c.classList.add('hidden'); }
         }
         window.onload = () => {
-            // Tanggal dipatok permanen sesuai permintaan: Selasa, 17 Maret 2026
+            // Tanggal dipatok permanen agar tidak berubah oleh cache logic
             document.getElementById('display-date').innerText = "Selasa, 17 Maret 2026";
         };
     </script>
