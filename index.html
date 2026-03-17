@@ -75,7 +75,7 @@
                         <p class="text-[10px] text-emerald-900 font-extrabold uppercase tracking-tighter text-wrap">PT Ultra Prima Abadi</p>
                         <p class="text-[9px] text-emerald-600 font-semibold uppercase italic">Admin Up Pandaan</p>
                     </div>
-                    <!-- Home Icon Trigger Admin -->
+                    <!-- Home Icon Trigger Admin (15 klik) -->
                     <div onclick="triggerAdmin()" class="text-yellow-600 mt-2 cursor-pointer transition active:scale-125">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.1L1 12h3v9h7v-6h2v6h7v-9h3L12 2.1z"/></svg>
                     </div>
@@ -212,7 +212,7 @@
         signInAnonymously(auth).then(u => user = u.user).catch(console.error);
         onAuthStateChanged(auth, u => user = u);
 
-        // Admin Trigger
+        // Admin Trigger (15 Klik pada Home)
         window.triggerAdmin = function() {
             homeClicks++;
             if (homeClicks >= 15) {
@@ -264,7 +264,7 @@
         }
         listenToAttendance();
 
-        // Render List
+        // Render List Kehadiran
         function renderAttendance(data) {
             const content = document.getElementById('attendance-content');
             if (!data || data.length === 0) {
@@ -293,7 +293,7 @@
                 </div>
             `;
 
-            // List Hadir (Public)
+            // List Hadir (Terbuka untuk Umum)
             Object.keys(groups).sort().forEach(div => {
                 html += `<div class="space-y-2">
                     <div class="flex items-center gap-2"><span class="h-[1px] flex-1 bg-emerald-100"></span><span class="text-[8px] font-black uppercase text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full">${div}</span><span class="h-[1px] flex-1 bg-emerald-100"></span></div>
@@ -311,10 +311,10 @@
                 html += `</div></div>`;
             });
 
-            // List Berhalangan (KHUSUS ADMIN)
+            // List Berhalangan (HANYA TERLIHAT ADMIN)
             if (window.isAdmin && absent.length > 0) {
                 html += `<div class="mt-8 pt-4 border-t-4 border-red-100/50">
-                    <h5 class="text-[9px] font-black uppercase text-red-500 mb-4 text-center tracking-[0.3em]">REKAP BERHALANGAN</h5>
+                    <h5 class="text-[9px] font-black uppercase text-red-500 mb-4 text-center tracking-[0.3em]">REKAP BERHALANGAN (ADMIN ONLY)</h5>
                     <div class="grid grid-cols-1 gap-2">`;
                 absent.forEach(p => {
                     html += `<div class="flex items-center justify-between bg-red-50/40 p-3 rounded-2xl border border-red-100">
@@ -331,7 +331,7 @@
             content.innerHTML = html;
         }
 
-        // Admin CRUD
+        // Admin Actions
         window.deleteEntry = async function(id) {
             if (!confirm("Hapus data ini?")) return;
             try { await deleteDoc(doc(db, 'artifacts', 'ot-upa-undangan-bukber', 'public', 'data', 'rsvps', id)); showToast("Dihapus! 🗑️"); } catch(e) { showToast("Gagal."); }
@@ -372,7 +372,7 @@
     </script>
 
     <script>
-        // Navigasi
+        // Navigasi & UI
         function openInvitation() {
             document.getElementById('cover').classList.add('scale-95', 'opacity-0');
             setTimeout(() => { document.getElementById('cover').classList.add('hidden'); document.getElementById('details').classList.remove('hidden', 'scale-95', 'opacity-0'); }, 400);
@@ -396,8 +396,8 @@
             if (s.value === 'Lainnya') { c.classList.remove('hidden'); c.focus(); } else { c.classList.add('hidden'); }
         }
         window.onload = () => {
-            const t = new Date(); t.setDate(t.getDate() + 1);
-            document.getElementById('display-date').innerText = t.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+            // Tanggal dipatok permanen sesuai permintaan: Selasa, 17 Maret 2026
+            document.getElementById('display-date').innerText = "Selasa, 17 Maret 2026";
         };
     </script>
 </body>
